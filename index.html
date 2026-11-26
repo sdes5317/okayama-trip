@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#24483c">
+<title>岡山四天三夜行程</title>
+<style>
+:root{
+  --green:#315e4d;--green-2:#4f7d69;--pale:#eaf1ec;--ink:#26332d;--muted:#5f6d66;--line:#dfe7e1;
+  --bg:#f4f7f4;--card:#ffffff;--soft:#f7faf8;--warn-bg:#fff7e8;--warn-line:#f0dfbd;--warn-ink:#6b4a10;
+  --bad-bg:#fdeeee;--bad-line:#f2c9c9;--bad-ink:#8a2424;--sun:#c77d12;--blue:#3d63a8;--shadow:0 1px 2px rgba(30,50,40,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --green:#8cc4a8;--green-2:#6ea78c;--pale:#1f3329;--ink:#e3ebe6;--muted:#a2b1a9;--line:#2c3a33;
+    --bg:#121915;--card:#19221d;--soft:#1d2822;--warn-bg:#2e2615;--warn-line:#4d3f1f;--warn-ink:#f1d9a3;
+    --bad-bg:#341c1c;--bad-line:#5a2c2c;--bad-ink:#f3b6b6;--sun:#f0b15a;--blue:#93b3ec;--shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --green:#8cc4a8;--green-2:#6ea78c;--pale:#1f3329;--ink:#e3ebe6;--muted:#a2b1a9;--line:#2c3a33;
+  --bg:#121915;--card:#19221d;--soft:#1d2822;--warn-bg:#2e2615;--warn-line:#4d3f1f;--warn-ink:#f1d9a3;
+  --bad-bg:#341c1c;--bad-line:#5a2c2c;--bad-ink:#f3b6b6;--sun:#f0b15a;--blue:#93b3ec;--shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.55}
+a{color:var(--green)}
+img{max-width:100%;display:block}
+.wrap{max-width:860px;margin:auto;padding:0 16px}
+
+/* Header */
+header{position:relative;color:#fff;padding:34px 0 26px;background:#24483c linear-gradient(130deg,#24483c,#71917d);overflow:hidden}
+header .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
+header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,40,32,.2),rgba(20,40,32,.78))}
+header .wrap{position:relative;z-index:1}
+.kicker{font-size:12px;letter-spacing:.14em;opacity:.92}
+h1{font-size:30px;margin:6px 0 4px;line-height:1.25}
+.sub{opacity:.92;font-size:14px}
+.countdown{display:inline-block;margin-top:14px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 13px;font-size:13px;font-weight:700;backdrop-filter:blur(4px)}
+.hcredit{position:absolute;right:10px;bottom:6px;z-index:1;font-size:10px;color:rgba(255,255,255,.75);text-decoration:none}
+
+/* Summary + cards */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:15px}.stat small{color:var(--muted);font-size:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin:10px 0;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:15px}
+.flights{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.flight{background:var(--soft);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.flight .fl-top{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}
+.flight .fl-no{font-weight:800;color:var(--green);font-size:14px}
+.flight .fl-route{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin-top:6px}
+.flight .fl-route b{font-size:20px;line-height:1.1;display:block}
+.flight .fl-route small{color:var(--muted);font-size:11px}
+.flight .fl-line{height:2px;background:repeating-linear-gradient(90deg,var(--green-2) 0 6px,transparent 6px 10px);position:relative}
+.flight .fl-line::after{content:"✈";position:absolute;right:-2px;top:-10px;font-size:13px;color:var(--green)}
+.flight .fl-right{text-align:right}
+.settings{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:13px;color:var(--muted)}
+.settings label{display:flex;align-items:center;gap:6px}
+.settings input[type=date]{font:inherit;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+button.btn{font:inherit;font-size:13px;color:var(--green);background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button.btn:hover{border-color:var(--green-2)}
+
+/* Tabs */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5}
+.tabs a{display:block;text-align:center;text-decoration:none;background:var(--card);border:1px solid var(--line);color:var(--green);font-weight:750;border-radius:11px;padding:8px 3px;line-height:1.25;transition:background .15s,color .15s}
+.tabs a small{display:block;font-weight:500;font-size:11px;color:var(--muted)}
+.tabs a.active{background:var(--green);border-color:var(--green);color:var(--card)}
+.tabs a.active small{color:var(--card);opacity:.85}
+.tabs a .wx{font-size:12px}
+
+/* Day card */
+.day{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:8px 0 18px;scroll-margin-top:72px;overflow:hidden;box-shadow:var(--shadow)}
+.day-body{padding:16px 17px 14px}
+.hero{position:relative;margin:0;aspect-ratio:16/7;background:linear-gradient(135deg,#2f5a4a,#8bab95);overflow:hidden}
+.hero::before{content:attr(data-label);position:absolute;left:16px;bottom:14px;color:#fff;font-weight:800;font-size:20px;opacity:.9}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero figcaption{position:absolute;right:0;bottom:0;background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:3px 8px;border-top-left-radius:8px}
+.hero figcaption a{color:#fff;text-decoration:none}
+.hero .datechip{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.92);color:#26332d;border-radius:10px;padding:4px 10px;font-weight:800;font-size:13px}
+.hero .datechip:empty{display:none}
+.day h2{font-size:21px;margin:0 0 4px;line-height:1.35}
+.day-intro{font-size:13px;color:var(--muted);margin:0 0 12px}
+
+/* Weather + sun panel */
+.dash{display:grid;grid-template-columns:1.15fr 1fr;gap:10px;margin:0 0 12px}
+.panel{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:13px;min-width:0}
+.panel h4{margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;display:flex;justify-content:space-between;gap:6px}
+.panel h4 span{font-weight:500}
+.wx-main{display:flex;align-items:center;gap:10px}
+.wx-icon{font-size:34px;line-height:1}
+.wx-desc b{font-size:16px}
+.wx-temp{font-size:13px;color:var(--muted)}
+.wx-temp b{color:var(--ink);font-size:15px}
+.wx-meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px;color:var(--muted)}
+.hours{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:8px}
+.hours div{background:var(--card);border:1px solid var(--line);border-radius:8px;text-align:center;padding:4px 2px;font-size:11px;color:var(--muted);line-height:1.35}
+.hours b{display:block;color:var(--ink);font-size:13px}
+.sunrow{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.sunrow div{line-height:1.35}
+.sunrow small{display:block;color:var(--muted);font-size:11px}
+.sunrow b{font-size:15px}
+.sunbar{position:relative;height:10px;border-radius:6px;margin:10px 0 4px;background:#20304a;overflow:hidden}
+.sunbar i{position:absolute;top:0;bottom:0}
+.sunbar-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+.photo-times{margin-top:6px;display:flex;flex-direction:column;gap:2px;font-size:12px}
+.photo-times .g{color:var(--sun);font-weight:700}
+.photo-times .bl{color:var(--blue);font-weight:700}
+.muted{color:var(--muted)}
+.tiny{font-size:11px;color:var(--muted);margin-top:6px}
+
+/* Notices */
+.notice{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--ink);border-radius:10px;padding:10px 11px;font-size:13px;margin-bottom:10px}
+.alert{border-radius:10px;padding:9px 11px;font-size:13px;margin-bottom:8px;border:1px solid var(--warn-line);background:var(--warn-bg);color:var(--warn-ink)}
+.alert.bad{border-color:var(--bad-line);background:var(--bad-bg);color:var(--bad-ink)}
+.alert.tip{border-color:var(--line);background:var(--pale);color:var(--ink)}
+.alerts:empty{display:none}
+
+/* Progress */
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);margin:4px 0 2px}
+.progress .bar{flex:1;height:6px;border-radius:4px;background:var(--line);overflow:hidden}
+.progress .bar i{display:block;height:100%;width:0;background:var(--green-2);transition:width .25s}
+
+/* Events */
+.event{display:grid;grid-template-columns:92px 1fr auto;gap:10px;padding:11px 0;border-top:1px solid var(--line);align-items:start}
+.event.now{background:linear-gradient(90deg,var(--pale),transparent);border-radius:8px;margin:0 -8px;padding:11px 8px}
+.event.now .time::after{content:"進行中";display:block;font-size:10px;color:var(--card);background:var(--green);border-radius:6px;padding:1px 5px;margin-top:3px;width:max-content}
+.time{font-weight:750;color:var(--green);font-size:13px;padding-top:2px}
+.event label{display:flex;gap:9px;align-items:flex-start;font-weight:700;cursor:pointer}
+.event input{width:18px;height:18px;accent-color:var(--green);flex:none;margin:2px 0 0}
+.event p{font-size:13px;color:var(--muted);margin:5px 0 0 27px}
+.event input:checked + span{text-decoration:line-through;color:var(--muted)}
+.tag{display:inline-block;background:var(--pale);color:var(--green);font-size:11px;padding:2px 7px;border-radius:20px;margin-left:6px;font-weight:600;font-style:normal}
+.map{display:inline-block;font-size:12px;margin-left:6px;text-decoration:none;white-space:nowrap}
+.map:hover{text-decoration:underline}
+.thumb{width:84px;height:64px;border-radius:9px;overflow:hidden;background:linear-gradient(135deg,#2f5a4a,#8bab95);flex:none}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.seg{margin:14px 0 0;padding:6px 10px;border-radius:8px;background:var(--pale);color:var(--green);font-size:13px;font-weight:800;letter-spacing:.04em}
+.toplink{display:block;text-align:right;font-size:12px;color:var(--green);margin-top:10px}
+
+/* Prep section */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0;padding:0;list-style:none}
+.links a{display:block;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:9px 11px;text-decoration:none;font-size:13px;height:100%}
+.links a b{display:block;color:var(--ink)}
+.links a small{color:var(--muted)}
+.pack{columns:2;column-gap:16px;margin:0;padding:0;list-style:none}
+.pack li{break-inside:avoid;padding:4px 0;font-size:14px}
+.pack label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.pack input{width:17px;height:17px;accent-color:var(--green);flex:none;margin:3px 0 0}
+.pack input:checked + span{text-decoration:line-through;color:var(--muted)}
+footer{font-size:12px;color:var(--muted);padding:6px 0 34px}
+footer p{margin:6px 0}
+
+@media(max-width:600px){
+  .dash{grid-template-columns:1fr}
+  .flights{grid-template-columns:1fr}
+  .links{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  h1{font-size:25px}
+  .event{grid-template-columns:66px 1fr auto;gap:8px}
+  .event p{margin-left:0}
+  .thumb{width:62px;height:52px}
+  .day-body{padding:13px 13px 12px}
+  .summary{gap:5px}.stat{padding:9px 7px}.stat b{font-size:13px}
+  .tabs{gap:5px}.tabs a{font-size:13px;padding:7px 2px}
+  .hero{aspect-ratio:16/9}
+  .pack{columns:1}
+}
+@media print{
+  .tabs,.toplink,.settings,.hero,.thumb,header .bgimg,.hcredit,.map{display:none!important}
+  header{background:#24483c;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  .day{break-inside:avoid;border:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<header id="top">
+  <img class="bgimg" alt="" src="img/1280px-Korakuen__japanese_garden__and_Okayama_castle.jpg" onerror="this.remove()">
+  <div class="wrap">
+    <div class="kicker">OKAYAMA · 4 DAYS 3 NIGHTS</div>
+    <h1>岡山四天三夜行程表</h1>
+    <div class="sub">古城健行・神社老街・庭園攝影｜不租車・大眾運輸</div>
+    <div class="countdown" id="countdown">2026/12/10（四）– 12/13（日）</div>
+  </div>
+  <a class="hcredit" href="https://commons.wikimedia.org/wiki/File:Korakuen_(japanese_garden)_and_Okayama_castle.jpg" target="_blank" rel="noopener">📷 Motokoka · CC BY-SA 4.0</a>
+</header>
+
+<main class="wrap">
+<div class="summary">
+  <div class="stat"><b id="sum-dates">12/10–12/13</b><small>四天三夜</small></div>
+  <div class="stat"><b>岡山站周邊</b><small>建議連住三晚</small></div>
+  <div class="stat"><b>17:55 回程起飛</b><small>16:00 前到機場</small></div>
+</div>
+
+<section class="card" aria-label="航班資訊">
+  <h3>✈️ 航班（台灣虎航）</h3>
+  <div class="flights">
+    <div class="flight">
+      <div class="fl-top"><span><span class="fl-no">IT214</span>　去程</span><span>12/10（四）</span></div>
+      <div class="fl-route">
+        <div><b>11:10</b><small>桃園 T1 · TPE</small></div>
+        <div class="fl-line"></div>
+        <div class="fl-right"><b>14:35</b><small>岡山 · OKJ</small></div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fl-top"><span><span class="fl-no">IT715</span>　回程</span><span>12/13（日）</span></div>
+      <div class="fl-route">
+        <div><b>17:55</b><small>岡山 · OKJ</small></div>
+        <div class="fl-line"></div>
+        <div class="fl-right"><b>19:55</b><small>桃園 T1 · TPE</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="settings" style="margin-top:10px">
+    <label>第一天日期 <input type="date" id="startDate" value="2026-12-10"></label>
+    <button class="btn" type="button" id="resetDate" hidden>改回 12/10</button>
+    <button class="btn" type="button" id="resetChecks">重設所有勾選</button>
+  </div>
+</section>
+
+<nav class="tabs" aria-label="切換行程日期">
+  <a href="#day1">第一天<small data-tab-date="0">12/10 四</small></a>
+  <a href="#day2">第二天<small data-tab-date="1">12/11 五</small></a>
+  <a href="#day3">第三天<small data-tab-date="2">12/12 六</small></a>
+  <a href="#day4">第四天<small data-tab-date="3">12/13 日</small></a>
+</nav>
+
+<!-- ============ DAY 1 ============ -->
+<section class="day" id="day1" data-day="0" data-loc="okayama">
+  <figure class="hero" data-label="西川綠道公園">
+    <img loading="lazy" alt="岡山市區的西川綠道公園" src="img/960px-Nishigawa_ryokudo_kouen01.jpg" onerror="this.remove()">
+    <span class="datechip" data-date-chip></span>
+    <figcaption><a href="https://commons.wikimedia.org/wiki/File:Nishigawa_ryokudo_kouen01.jpg" target="_blank" rel="noopener">📷 Fjkelfeimvvn · CC BY 3.0</a></figcaption>
+  </figure>
+  <div class="day-body">
+    <h2>第一天｜岡山市區</h2>
+    <p class="day-intro">IT214 預定 14:35 抵達｜當天以放鬆、熟悉市區為主</p>
+    <div class="dash" data-dash></div>
+    <div class="alerts" data-alerts></div>
+    <div class="notice">📌 機場巴士車程約30分鐘。實際抵達時間依入境、行李及巴士班次而定；若航班延誤，優先入住及用餐。</div>
+    <div class="progress" data-progress><span>完成 0/0</span><div class="bar"><i></i></div></div>
+
+    <div class="event"><div class="time">14:30</div><div><label><input type="checkbox"><span>抵達岡山機場</span></label><p>IT214 預定 14:35 抵達；入境、領行李，確認機場巴士乘車處與發車時間。<i class="tag">機場</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山桃太郎空港">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Okayama_airport_terminal.jpg" target="_blank" rel="noopener" title="📷 ブルーノ・プラス · CC BY-SA 4.0"><img loading="lazy" alt="岡山機場航廈" src="img/330px-Okayama_airport_terminal.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">15:30–16:30</div><div><label><input type="checkbox"><span>機場巴士至岡山站</span></label><p>搭往岡山站西口方向巴士，車程約30分鐘，另預留候車時間。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">16:30–17:30</div><div><label><input type="checkbox"><span>飯店入住</span></label><p>建議住岡山站步行約5–10分鐘範圍，連住三晚。<i class="tag">住宿</i></p></div></div>
+    <div class="event"><div class="time">17:30–18:30</div><div><label><input type="checkbox"><span>西川綠道公園</span></label><p><span data-sun-text="d1">傍晚散步、拍河道與城市燈光</span>；天候不佳可改逛車站周邊。<i class="tag">夜拍</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=西川緑道公園">📍地圖</a></p></div></div>
+    <div class="event"><div class="time">18:30–20:00</div><div><label><input type="checkbox"><span>晚餐、自由活動</span></label><p>順便補充隔天早餐、飲水與健行小點心。<i class="tag">用餐</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山駅">📍地圖</a></p></div></div>
+    <a class="toplink" href="#top">回到上方 ↑</a>
+  </div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<section class="day" id="day2" data-day="1" data-loc="kinojo">
+  <figure class="hero" data-label="鬼之城・西門">
+    <img loading="lazy" alt="鬼之城復原的西門與城牆" src="img/960px-Kinojo_Nishi_mon_area.jpg" onerror="this.remove()">
+    <span class="datechip" data-date-chip></span>
+    <figcaption><a href="https://commons.wikimedia.org/wiki/File:Kinojo_Nishi_mon_area.jpg" target="_blank" rel="noopener">📷 Reggaeman · CC BY-SA 3.0</a></figcaption>
+  </figure>
+  <div class="day-body">
+    <h2>第二天｜鬼之城・古代山城健行</h2>
+    <p class="day-intro">JR 到總社站，計程車上山｜西門、城牆步道與展望台</p>
+    <div class="dash" data-dash></div>
+    <div class="alerts" data-alerts></div>
+    <div class="notice">📌 鬼城山沒有方便的大眾運輸，上下山都靠預約計程車。前一天先預約去程，上車時就和司機約好 14:00 回程；山上臨時叫車不易。步道有石階與碎石路段，穿防滑鞋。</div>
+    <div class="progress" data-progress><span>完成 0/0</span><div class="bar"><i></i></div></div>
+
+    <div class="event"><div class="time">07:30</div><div><label><input type="checkbox"><span>岡山站早餐</span></label><p>順便買好午餐、熱飲與小點心，山上餐飲選擇很少。<i class="tag">準備</i></p></div></div>
+    <div class="event"><div class="time">08:00</div><div><label><input type="checkbox"><span>JR 岡山站出發</span></label><p>往總社可搭 JR 伯備線（較快）或吉備線（桃太郎線），依當日班次調整。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">約08:30</div><div><label><input type="checkbox"><span>抵達總社站</span></label><p>到站後與預約的計程車會合。<i class="tag">交通</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=総社駅">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:JR-Soujya-station.jpg" target="_blank" rel="noopener" title="📷 世界の坂田銀時 · CC0"><img loading="lazy" alt="JR 總社站" src="img/330px-JR-Soujya-station.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">08:30–09:00</div><div><label><input type="checkbox"><span>預約計程車前往鬼城山</span></label><p>在鬼城山遊客中心下車；上車時約好回程時間與地點。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">09:00–09:30</div><div><label><input type="checkbox"><span>鬼城山遊客中心</span></label><p>看展示、拿步道地圖、上廁所，確認當天步道狀況。<i class="tag">定位</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=鬼城山ビジターセンター">📍地圖</a></p></div></div>
+    <div class="event"><div class="time">09:30–10:00</div><div><label><input type="checkbox"><span>西門拍攝</span></label><p>拍復原的西門、角樓與高石牆；從下方仰拍最能呈現城牆量感。<i class="tag">攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=鬼ノ城 西門">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kinojo.JPG" target="_blank" rel="noopener" title="📷 Indy · Public domain"><img loading="lazy" alt="鬼之城西門與石牆" src="img/330px-Kinojo.JPG" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">10:00–12:00</div><div><label><input type="checkbox"><span>城牆步道健行</span></label><p>沿城牆步道繞行，沿途有石階與碎石路；可拍水門、礎石群與遠方的總社平原。<i class="tag">健行・攝影</i></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kinojo,_enkei-2.jpg" target="_blank" rel="noopener" title="📷 Saigen Jiro · CC0"><img loading="lazy" alt="鬼之城城牆遠景" src="img/330px-Kinojo__enkei-2.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">12:00–13:00</div><div><label><input type="checkbox"><span>午餐、休息</span></label><p>在可停留的位置用餐，垃圾自行帶走。<i class="tag">休息</i></p></div></div>
+    <div class="event"><div class="time">13:00–14:00</div><div><label><input type="checkbox"><span>展望台、補拍照片</span></label><p>眺望總社市區與吉備平原；依天候與體力補拍。<span data-sun-text="d2"></span><i class="tag">攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=鬼ノ城">📍地圖</a></p></div></div>
+    <div class="event"><div class="time">14:00–14:30</div><div><label><input type="checkbox"><span>預約計程車回總社站</span></label><p>依約定時間在遊客中心上車。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">15:00左右</div><div><label><input type="checkbox"><span>JR 回岡山</span></label><p>依當日班次搭車。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">16:00後</div><div><label><input type="checkbox"><span>市區晚餐、休息</span></label><p>健行日早點休息，為隔天保留體力。<i class="tag">用餐</i></p></div></div>
+    <a class="toplink" href="#top">回到上方 ↑</a>
+  </div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<section class="day" id="day3" data-day="2" data-loc="kurashiki">
+  <figure class="hero" data-label="倉敷美觀地區">
+    <img loading="lazy" alt="冬日早晨的倉敷川" src="img/960px-Kurasiki_morning01.JPG" onerror="this.remove()">
+    <span class="datechip" data-date-chip></span>
+    <figcaption><a href="https://commons.wikimedia.org/wiki/File:Kurasiki_morning01.JPG" target="_blank" rel="noopener">📷 Miya.m · CC BY-SA 4.0</a></figcaption>
+  </figure>
+  <div class="day-body">
+    <h2>第三天｜吉備津神社＋倉敷</h2>
+    <p class="day-intro">上午 JR 吉備線到吉備津神社｜下午倉敷美觀地區、黃昏攝影</p>
+    <div class="dash" data-dash></div>
+    <div class="alerts" data-alerts></div>
+    <div class="notice">📌 吉備津站班次不多，回程先查好 JR 吉備線時刻。大原美術館開館時間與休館日以<a href="https://www.ohara.or.jp/" target="_blank" rel="noopener">官網</a>為準。</div>
+    <div class="progress" data-progress><span>完成 0/0</span><div class="bar"><i></i></div></div>
+
+    <div class="seg">上午｜吉備津神社</div>
+    <div class="event"><div class="time">08:00</div><div><label><input type="checkbox"><span>岡山站出發</span></label><p>搭 JR 吉備線（桃太郎線）往總社方向。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">約08:17</div><div><label><input type="checkbox"><span>JR 抵達吉備津站</span></label><p>先看好回程班次時間。<i class="tag">交通</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=吉備津駅">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kibitsu-sta.JPG" target="_blank" rel="noopener" title="📷 ＳＴＫ · CC BY-SA 3.0"><img loading="lazy" alt="JR 吉備津站" src="img/330px-Kibitsu-sta.JPG" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">08:30</div><div><label><input type="checkbox"><span>步行前往神社</span></label><p>從車站沿松並木參道步行前往。<i class="tag">散步</i></p></div></div>
+    <div class="event"><div class="time">08:45–10:30</div><div><label><input type="checkbox"><span>本殿、迴廊、境內散步</span></label><p>國寶本殿與長長的迴廊是拍攝重點；早上人少、光線柔和。<i class="tag">神社・攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=吉備津神社">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kibitsu_Jinja_10_cropped.jpg" target="_blank" rel="noopener" title="📷 Reggaeman, Urashimataro · CC BY-SA 3.0"><img loading="lazy" alt="吉備津神社本殿" src="img/330px-Kibitsu_Jinja_10_cropped.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">10:30–11:00</div><div><label><input type="checkbox"><span>返回吉備津站</span></label><p>依查好的班次回到車站。<i class="tag">交通</i></p></div></div>
+
+    <div class="seg">下午｜倉敷美觀地區</div>
+    <div class="event"><div class="time">11:00–12:00</div><div><label><input type="checkbox"><span>JR 吉備津站方向返回岡山、轉乘前往倉敷</span></label><p>岡山轉 JR 山陽本線到倉敷；倉敷站步行約 10–15 分鐘到美觀地區。<i class="tag">交通</i></p></div></div>
+    <div class="event"><div class="time">12:00–13:00</div><div><label><input type="checkbox"><span>倉敷午餐</span></label><p>週六中午人多，可提早用餐。<i class="tag">用餐</i></p></div></div>
+    <div class="event"><div class="time">13:00–14:00</div><div><label><input type="checkbox"><span>倉敷川、白壁街道</span></label><p>拍柳樹、石橋、白壁倉庫與河面倒影。<i class="tag">散步・攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=倉敷美観地区">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kurashiki_river_in_the_vicinity_of_Nakabashi_bridge.JPG" target="_blank" rel="noopener" title="📷 tatushin · Public domain"><img loading="lazy" alt="倉敷川中橋一帶" src="img/330px-Kurashiki_river_in_the_vicinity_of_Nakabashi_bridge.JPG" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">14:00–15:00</div><div><label><input type="checkbox"><span>大原美術館、特色商店</span></label><p>館內多數區域禁止攝影，留意館方規定。<i class="tag">美術館</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=大原美術館">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Kurashiki_Ohara_Art_Museum02nt3200.jpg" target="_blank" rel="noopener" title="📷 663highland · CC BY 2.5"><img loading="lazy" alt="大原美術館" src="img/330px-Kurashiki_Ohara_Art_Museum02nt3200.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">15:00–16:00</div><div><label><input type="checkbox"><span>本町通、阿智神社</span></label><p>逛本町通老街；阿智神社在鶴形山上，爬石階上去可俯瞰倉敷屋瓦。<i class="tag">散步</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=阿智神社 倉敷">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Achi_Shrine_in_Kurashiki.jpg" target="_blank" rel="noopener" title="📷 Miyuki Meinaka · Public domain"><img loading="lazy" alt="倉敷阿智神社" src="img/330px-Achi_Shrine_in_Kurashiki.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">16:00–17:00</div><div><label><input type="checkbox"><span>倉敷川黃昏攝影</span></label><p><span data-sun-text="d3">拍黃昏的倉敷川與白壁倒影</span>。<i class="tag">攝影</i></p></div></div>
+    <div class="event"><div class="time">17:00–18:00</div><div><label><input type="checkbox"><span>JR 返回岡山</span></label><p>回岡山站後晚餐、休息。<i class="tag">交通</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=倉敷駅">📍地圖</a></p></div></div>
+    <a class="toplink" href="#top">回到上方 ↑</a>
+  </div>
+</section>
+
+<!-- ============ DAY 4 ============ -->
+<section class="day" id="day4" data-day="3" data-loc="okayama">
+  <figure class="hero" data-label="岡山後樂園">
+    <img loading="lazy" alt="岡山後樂園" src="img/960px-Okayama_Korakuen_Garden01.jpg" onerror="this.remove()">
+    <span class="datechip" data-date-chip></span>
+    <figcaption><a href="https://commons.wikimedia.org/wiki/File:Okayama_Korakuen_Garden01.jpg" target="_blank" rel="noopener">📷 Fjkelfeimvvn · CC BY 3.0</a></figcaption>
+  </figure>
+  <div class="day-body">
+    <h2>第四天｜岡山後樂園＋岡山城</h2>
+    <p class="day-intro">後樂園是日本三大名園之一，值得保留完整的上午｜16:00 前抵達機場</p>
+    <div class="dash" data-dash></div>
+    <div class="alerts" data-alerts></div>
+    <div class="notice">📌 建議以岡山站西口約14:50出發的機場巴士作規劃參考，預計約15:20抵達機場；請核對當日最新時刻表，並依航空公司報到要求調整。</div>
+    <div class="progress" data-progress><span>完成 0/0</span><div class="bar"><i></i></div></div>
+
+    <div class="event"><div class="time">07:30</div><div><label><input type="checkbox"><span>早餐、退房、寄放行李</span></label><p>先確認飯店行李寄放方式，帶隨身物品出門。<i class="tag">準備</i></p></div></div>
+    <div class="event"><div class="time">08:00–09:30</div><div><label><input type="checkbox"><span>後樂園</span></label><p>開園時間以官網為準；拍池塘倒影、松樹、茶屋與庭園遠景，早上人少、光線柔和。<i class="tag">庭園・攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山後楽園">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Korakuen_(japanese_garden)_and_Okayama_castle.jpg" target="_blank" rel="noopener" title="📷 Motokoka · CC BY-SA 4.0"><img loading="lazy" alt="從後樂園望岡山城" src="img/330px-Korakuen__japanese_garden__and_Okayama_castle.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">09:30–10:30</div><div><label><input type="checkbox"><span>岡山城</span></label><p>拍黑色城郭外觀；入城參觀視時間決定。<i class="tag">攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山城">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Okayama_Castle_main_keep_2023-10-18.jpg" target="_blank" rel="noopener" title="📷 Kanesue · CC BY 2.0"><img loading="lazy" alt="岡山城天守" src="img/330px-Okayama_Castle_main_keep_2023-10-18.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">10:30–11:30</div><div><label><input type="checkbox"><span>旭川河畔拍照</span></label><p>沿旭川拍岡山城與河岸景色。<i class="tag">攝影</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=旭川 岡山城">📍地圖</a></p></div>
+      <a class="thumb" href="https://commons.wikimedia.org/wiki/File:Asahi_River_Okayama_pref01bs3872.jpg" target="_blank" rel="noopener" title="📷 663highland · CC BY 2.5"><img loading="lazy" alt="岡山旭川" src="img/330px-Asahi_River_Okayama_pref01bs3872.jpg" onerror="this.remove()"></a></div>
+    <div class="event"><div class="time">11:30–12:30</div><div><label><input type="checkbox"><span>午餐</span></label><p>在城下或岡山站周邊用餐。<i class="tag">用餐</i></p></div></div>
+    <div class="event"><div class="time">12:30–13:30</div><div><label><input type="checkbox"><span>岡山站購物</span></label><p>買伴手禮、補充飲水；不要安排太遠的景點。<i class="tag">購物</i></p></div></div>
+    <div class="event"><div class="time">13:30–14:15</div><div><label><input type="checkbox"><span>取行李、前往車站</span></label><p>確認行李與岡山站西口巴士乘車位置。<i class="tag">交通</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山駅西口">📍地圖</a></p></div></div>
+    <div class="event"><div class="time">14:50左右</div><div><label><input type="checkbox"><span>機場巴士</span></label><p>此為規劃參考班次，請核對當日官方時刻表。<i class="tag">返程</i></p></div></div>
+    <div class="event"><div class="time">約15:20</div><div><label><input type="checkbox"><span>抵達岡山機場</span></label><p>辦理報到、安檢與出境。<i class="tag">機場</i><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=岡山桃太郎空港">📍地圖</a></p></div></div>
+    <div class="event"><div class="time">16:00前</div><div><label><input type="checkbox"><span>抵達機場（最晚）</span></label><p>IT715 17:55 起飛、19:55 抵達桃園 T1；依台灣虎航規定時間報到。<i class="tag">航班</i></p></div></div>
+    <a class="toplink" href="#top">回到上方 ↑</a>
+  </div>
+</section>
+
+<!-- ============ PREP ============ -->
+<section class="card" id="prep">
+  <h3>🔗 出發前要查的官方資訊</h3>
+  <ul class="links">
+    <li><a href="https://www.jr-odekake.net/" target="_blank" rel="noopener"><b>JR 西日本 おでかけネット</b><small>岡山⇄總社、吉備津、倉敷 時刻與轉乘</small></a></li>
+    <li><a href="https://www.city.soja.okayama.jp/" target="_blank" rel="noopener"><b>總社市</b><small>鬼之城、鬼城山遊客中心開放資訊</small></a></li>
+    <li><a href="https://kibitujinja.com/" target="_blank" rel="noopener"><b>吉備津神社</b><small>參拜時間與境內資訊</small></a></li>
+    <li><a href="https://www.ohara.or.jp/" target="_blank" rel="noopener"><b>大原美術館</b><small>開館時間、休館日、門票</small></a></li>
+    <li><a href="https://www.kurashiki-tabi.jp/" target="_blank" rel="noopener"><b>倉敷觀光</b><small>美觀地區活動、點燈資訊</small></a></li>
+    <li><a href="https://www.okayama-airport.org/" target="_blank" rel="noopener"><b>岡山桃太郎機場</b><small>機場巴士時刻、航班動態</small></a></li>
+    <li><a href="https://okayama-korakuen.jp/" target="_blank" rel="noopener"><b>岡山後樂園</b><small>開園時間、門票</small></a></li>
+    <li><a href="https://okayama-castle.jp/" target="_blank" rel="noopener"><b>岡山城</b><small>開放時間、門票</small></a></li>
+    <li><a href="https://www.tigerairtw.com/" target="_blank" rel="noopener"><b>台灣虎航</b><small>IT214／IT715 航班狀態、線上報到</small></a></li>
+  </ul>
+</section>
+
+<section class="card" id="pack">
+  <h3>🎒 12 月攜帶清單 <small class="muted" data-pack-progress></small></h3>
+  <ul class="pack">
+    <li><label><input type="checkbox"><span>護照、航班確認信</span></label></li>
+    <li><label><input type="checkbox"><span>鬼之城去回程計程車預約</span></label></li>
+    <li><label><input type="checkbox"><span>防風保暖外套、手套、毛帽</span></label></li>
+    <li><label><input type="checkbox"><span>防滑健行鞋（鬼之城石階、碎石步道）</span></label></li>
+    <li><label><input type="checkbox"><span>小型腳架（夜拍、黃昏）</span></label></li>
+    <li><label><input type="checkbox"><span>行動電源、充電線、備用記憶卡</span></label></li>
+    <li><label><input type="checkbox"><span>折疊傘或輕便雨衣</span></label></li>
+    <li><label><input type="checkbox"><span>暖暖包（低溫下電池也會掉電）</span></label></li>
+    <li><label><input type="checkbox"><span>日圓現金（計程車、神社、小店）</span></label></li>
+    <li><label><input type="checkbox"><span>交通 IC 卡（JR 可用）</span></label></li>
+    <li><label><input type="checkbox"><span>日本上網 eSIM／Wi-Fi 分享器</span></label></li>
+    <li><label><input type="checkbox"><span>環保袋、垃圾袋（步道垃圾自行帶走）</span></label></li>
+  </ul>
+</section>
+
+<footer>
+  <p>勾選框可直接點選標記完成，會自動記在這台裝置的瀏覽器。時間是行程規劃時段，出發前仍須核對 JR、巴士、渡輪及美術館公告。</p>
+  <p>天氣：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>（CC BY 4.0），預報約涵蓋未來 16 天。日出日落與攝影時刻由頁面依經緯度計算（太陽高度：日出日落 −0.833°、黃金時刻 +6°、藍調 −4°～−8°），誤差約 1–2 分鐘。</p>
+  <p>照片：Wikimedia Commons，作者與授權標示於各圖，點圖可看原始檔案頁。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- small helpers ---------- */
+  var store = {
+    get: function (k, fallback) { try { var v = localStorage.getItem(k); return v === null ? fallback : JSON.parse(v); } catch (e) { return fallback; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  var WEEK = ["日", "一", "二", "三", "四", "五", "六"];
+  var DEFAULT_START = "2026-12-10";
+  var HOUR = 3600e3, DAY = 864e5, JST = 9 * HOUR;
+
+  var LOCS = {
+    okayama:  { name: "岡山市區", lat: 34.666, lon: 133.918, idx: 0 },
+    kinojo:    { name: "鬼之城",   lat: 34.734, lon: 133.765, idx: 1 },
+    kurashiki: { name: "倉敷",     lat: 34.596, lon: 133.772, idx: 2 }
+  };
+
+  // "YYYY-MM-DD" -> epoch ms at 00:00 JST
+  function jstMidnight(iso) { var p = iso.split("-").map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) - JST; }
+  function isoFromMs(ms) { var d = new Date(ms + JST); return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()); }
+  function addDays(iso, n) { return isoFromMs(jstMidnight(iso) + n * DAY + 12 * HOUR); }
+  function hm(ms) { var d = new Date(ms + JST); return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()); }
+  function mdw(iso) { var d = new Date(jstMidnight(iso) + JST); return (d.getUTCMonth() + 1) + "/" + d.getUTCDate() + " " + WEEK[d.getUTCDay()]; }
+  function weekday(iso) { return new Date(jstMidnight(iso) + JST).getUTCDay(); }
+  function todayIso() { return isoFromMs(Date.now()); }
+
+  /* ---------- sun position (Astronomy Answers / NOAA formulas) ---------- */
+  var rad = Math.PI / 180, J1970 = 2440588, J2000 = 2451545, J0 = 0.0009, OBL = rad * 23.4397;
+  function sunTimes(iso, lat, lon) {
+    var noon = jstMidnight(iso) + 12 * HOUR;
+    var d = noon / DAY - 0.5 + J1970 - J2000;
+    var lw = -lon * rad, phi = lat * rad;
+    var n = Math.round(d - J0 - lw / (2 * Math.PI));
+    var ds = J0 + lw / (2 * Math.PI) + n;
+    var M = rad * (357.5291 + 0.98560028 * ds);
+    var C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M));
+    var L = M + C + rad * 102.9372 + Math.PI;
+    var dec = Math.asin(Math.sin(OBL) * Math.sin(L));
+    var Jnoon = J2000 + ds + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+    var toMs = function (j) { return (j + 0.5 - J1970) * DAY; };
+    function at(deg) {
+      var w = Math.acos((Math.sin(deg * rad) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)));
+      var a = J0 + (w + lw) / (2 * Math.PI) + n;
+      var Jset = J2000 + a + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+      return { rise: toMs(Jnoon - (Jset - Jnoon)), set: toMs(Jset) };
+    }
+    var s = at(-0.833), g = at(6), b4 = at(-4), b8 = at(-8);
+    return {
+      sunrise: s.rise, sunset: s.set, noon: toMs(Jnoon),
+      goldenEve: [g.set, s.set], blueEve: [b4.set, b8.set],
+      blueMorn: [b8.rise, b4.rise], goldenMorn: [s.rise, g.rise]
+    };
+  }
+
+  /* ---------- weather codes (WMO) ---------- */
+  function wmo(code) {
+    var m = {
+      0: ["☀️", "晴"], 1: ["🌤️", "晴時多雲"], 2: ["⛅", "多雲"], 3: ["☁️", "陰"],
+      45: ["🌫️", "霧"], 48: ["🌫️", "霧淞"],
+      51: ["🌦️", "毛毛雨"], 53: ["🌦️", "毛毛雨"], 55: ["🌧️", "較強毛毛雨"], 56: ["🌧️", "凍毛毛雨"], 57: ["🌧️", "凍毛毛雨"],
+      61: ["🌧️", "小雨"], 63: ["🌧️", "中雨"], 65: ["🌧️", "大雨"], 66: ["🌧️", "凍雨"], 67: ["🌧️", "強凍雨"],
+      71: ["🌨️", "小雪"], 73: ["🌨️", "中雪"], 75: ["❄️", "大雪"], 77: ["🌨️", "雪粒"],
+      80: ["🌦️", "陣雨"], 81: ["🌧️", "陣雨"], 82: ["⛈️", "強陣雨"], 85: ["🌨️", "陣雪"], 86: ["❄️", "強陣雪"],
+      95: ["⛈️", "雷雨"], 96: ["⛈️", "雷雨夾冰雹"], 99: ["⛈️", "強雷雨夾冰雹"]
+    };
+    return m[code] || ["🌡️", "—"];
+  }
+
+  /* ---------- weather fetch with 1-hour cache ---------- */
+  var WX_KEY = "okj-v4-wx";
+  var WX_URL = "https://api.open-meteo.com/v1/forecast?latitude=34.666,34.734,34.596&longitude=133.918,133.765,133.772" +
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max" +
+    "&hourly=temperature_2m,precipitation_probability,weather_code&timezone=Asia%2FTokyo&forecast_days=16";
+  var wx = { data: null, at: 0, state: "loading", stale: false };
+
+  function loadWeather() {
+    var cached = store.get(WX_KEY, null);
+    if (cached && cached.data && Date.now() - cached.at < HOUR) {
+      wx = { data: cached.data, at: cached.at, state: "ok", stale: false };
+      renderAll();
+      return;
+    }
+    wx.state = "loading"; renderAll();
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+    fetch(WX_URL, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (json) {
+        var data = Array.isArray(json) ? json : [json];
+        var slim = data.map(function (loc) { return { daily: loc.daily, hourly: loc.hourly }; });
+        wx = { data: slim, at: Date.now(), state: "ok", stale: false };
+        store.set(WX_KEY, { data: slim, at: wx.at });
+      })
+      .catch(function () {
+        if (cached && cached.data) wx = { data: cached.data, at: cached.at, state: "ok", stale: true };
+        else wx = { data: null, at: 0, state: "error", stale: false };
+      })
+      .then(function () { clearTimeout(timer); renderAll(); });
+  }
+
+  function dayWeather(locKey, iso) {
+    if (!wx.data) return null;
+    var loc = wx.data[LOCS[locKey].idx];
+    if (!loc || !loc.daily) return null;
+    var i = loc.daily.time.indexOf(iso);
+    if (i < 0) return null;
+    var D = loc.daily, H = loc.hourly, hours = [];
+    [9, 12, 15, 18].forEach(function (h) {
+      var j = H.time.indexOf(iso + "T" + pad(h) + ":00");
+      if (j >= 0) hours.push({ h: h, t: H.temperature_2m[j], p: H.precipitation_probability[j], c: H.weather_code[j] });
+    });
+    return {
+      code: D.weather_code[i], tmax: D.temperature_2m_max[i], tmin: D.temperature_2m_min[i],
+      pop: D.precipitation_probability_max[i], wind: D.wind_speed_10m_max[i], hours: hours
+    };
+  }
+  function lastForecastDay() {
+    if (!wx.data || !wx.data[0] || !wx.data[0].daily) return null;
+    var t = wx.data[0].daily.time; return t[t.length - 1];
+  }
+  var r0 = function (x) { return x == null ? "—" : Math.round(x); };
+
+  /* ---------- rendering ---------- */
+  function startDate() {
+    var v = store.get("okj-v4-start", DEFAULT_START);
+    return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : DEFAULT_START;
+  }
+
+  function renderHeader(start) {
+    var end = addDays(start, 3), today = todayIso();
+    $("#sum-dates").textContent = mdw(start).split(" ")[0] + "–" + mdw(end).split(" ")[0];
+    var cd = $("#countdown");
+    var diff = Math.round((jstMidnight(start) - jstMidnight(today)) / DAY);
+    var range = start.slice(0, 4) + "/" + mdw(start).replace(" ", "（") + "）– " + mdw(end).replace(" ", "（") + "）";
+    if (diff > 0) cd.textContent = range + "｜距出發還有 " + diff + " 天";
+    else if (diff > -4) cd.textContent = range + "｜旅程第 " + (1 - diff) + " 天";
+    else cd.textContent = range + "｜旅程已結束";
+    $("#resetDate").hidden = start === DEFAULT_START;
+  }
+
+  function sunBar(sun) {
+    // 05:00–20:00 JST timeline with night / blue / golden / day bands
+    var base = jstMidnight(isoFromMs(sun.noon)) + 5 * HOUR, span = 15 * HOUR;
+    var pct = function (ms) { return Math.max(0, Math.min(100, (ms - base) / span * 100)); };
+    var band = function (a, b, color) { return '<i style="left:' + pct(a).toFixed(2) + '%;width:' + (pct(b) - pct(a)).toFixed(2) + '%;background:' + color + '"></i>'; };
+    return '<div class="sunbar" role="img" aria-label="日照時間軸">' +
+      band(sun.blueMorn[0], sun.blueMorn[1], "#4a6fb5") +
+      band(sun.blueMorn[1], sun.goldenMorn[0], "#c98a6b") +
+      band(sun.goldenMorn[0], sun.goldenMorn[1], "#f0b15a") +
+      band(sun.goldenMorn[1], sun.goldenEve[0], "#bfe0f2") +
+      band(sun.goldenEve[0], sun.goldenEve[1], "#f0b15a") +
+      band(sun.goldenEve[1], sun.blueEve[0], "#c98a6b") +
+      band(sun.blueEve[0], sun.blueEve[1], "#4a6fb5") +
+      '</div><div class="sunbar-ticks"><span>05</span><span>08</span><span>11</span><span>14</span><span>17</span><span>20</span></div>';
+  }
+
+  function renderDay(sec, start) {
+    var dayIdx = +sec.getAttribute("data-day");
+    var iso = addDays(start, dayIdx), locKey = sec.getAttribute("data-loc"), loc = LOCS[locKey];
+    var sun = sunTimes(iso, loc.lat, loc.lon);
+    var w = dayWeather(locKey, iso);
+    // One source for every sun time so sunset, golden hour and blue hour always line up.
+    var sunrise = sun.sunrise, sunset = sun.sunset;
+    var label = mdw(iso);
+
+    $("[data-date-chip]", sec).textContent = iso.slice(0, 4) + "/" + label.replace(" ", "（") + "）";
+    var tab = $('[data-tab-date="' + dayIdx + '"]');
+    if (tab) tab.innerHTML = label + (w ? ' <span class="wx">' + wmo(w.code)[0] + "</span>" : "");
+
+    /* weather panel */
+    var wxHtml;
+    if (w) {
+      var ic = wmo(w.code);
+      wxHtml = '<div class="wx-main"><div class="wx-icon" aria-hidden="true">' + ic[0] + '</div><div class="wx-desc"><b>' + ic[1] +
+        '</b><div class="wx-temp"><b>' + r0(w.tmax) + '°</b> / ' + r0(w.tmin) + '°C</div></div></div>' +
+        '<div class="wx-meta"><span>☔ 降雨機率 ' + r0(w.pop) + '%</span><span>💨 最大風速 ' + r0(w.wind) + ' km/h</span></div>' +
+        (w.hours.length ? '<div class="hours">' + w.hours.map(function (h) {
+          return '<div>' + h.h + '時<b>' + wmo(h.c)[0] + ' ' + r0(h.t) + '°</b>' + r0(h.p) + '%</div>';
+        }).join("") + "</div>" : "") +
+        '<div class="tiny">Open-Meteo · ' + (wx.stale ? "離線資料，" : "") + "更新於 " + mdw(isoFromMs(wx.at)).split(" ")[0] + " " + hm(wx.at) + "</div>";
+    } else if (wx.state === "loading") {
+      wxHtml = '<div class="muted">讀取天氣預報中…</div>';
+    } else {
+      var last = lastForecastDay(), msg;
+      if (wx.state === "error") msg = "目前無法取得天氣預報（可能離線），請稍後重新整理。";
+      else if (iso < todayIso()) msg = "這天已經過去，沒有預報資料。";
+      else if (last) {
+        var wait = Math.round((jstMidnight(iso) - jstMidnight(last)) / DAY);
+        msg = "預報目前只到 " + mdw(last).split(" ")[0] + "，這天大約再 " + wait + " 天會出現。";
+      } else msg = "尚無預報。";
+      wxHtml = '<div class="muted">' + msg + '</div>' +
+        (iso.slice(5, 7) === "12" ? '<div class="tiny">岡山 12 月平年參考：高溫約 11°C／低溫約 2°C，乾燥、早晚冷。</div>' : "");
+    }
+
+    /* sun panel */
+    var sunHtml = '<div class="sunrow"><div><small>🌅 日出</small><b>' + hm(sunrise) + '</b></div><div><small>🌇 日落</small><b>' + hm(sunset) + '</b></div></div>' +
+      sunBar(sun) +
+      '<div class="photo-times"><span><span class="g">✨ 黃金時刻</span> 清晨 ' + hm(sun.goldenMorn[0]) + '–' + hm(sun.goldenMorn[1]) + '・傍晚 ' + hm(sun.goldenEve[0]) + '–' + hm(sun.goldenEve[1]) + '</span>' +
+      '<span><span class="bl">🔵 藍調時刻</span> 清晨 ' + hm(sun.blueMorn[0]) + '–' + hm(sun.blueMorn[1]) + '・傍晚 ' + hm(sun.blueEve[0]) + '–' + hm(sun.blueEve[1]) + '</span></div>';
+
+    $("[data-dash]", sec).innerHTML =
+      '<div class="panel"><h4>天氣 · ' + loc.name + '<span>' + label + '</span></h4>' + wxHtml + '</div>' +
+      '<div class="panel"><h4>日照與攝影時刻<span>' + loc.name + '</span></h4>' + sunHtml + '</div>';
+
+    /* dynamic tips & alerts */
+    var alerts = [];
+    var wd = weekday(iso);
+    if (dayIdx === 1 && wd === 1) alerts.push(["bad", "⚠️ 這天是週一：鬼城山遊客中心可能休館（遇假日順延），步道仍可走，但廁所與展示可能無法使用；出發前查總社市官網。"]);
+    if (dayIdx === 2 && wd === 1) alerts.push(["bad", "⚠️ 這天是週一：大原美術館通常週一休館（遇假日等例外以官網為準），建議與其他天對調。"]);
+    if (dayIdx === 2 && (wd === 6 || wd === 0)) alerts.push(["tip", "🗓️ 這天是週" + WEEK[wd] + "：倉敷美觀地區人潮較多，白壁街道想拍乾淨畫面可先拍、或留到黃昏；午餐提早吃。"]);
+    if (w) {
+      var rainy = w.pop >= 60 || (w.code >= 61 && w.code <= 67) || w.code >= 80;
+      var windy = w.wind >= 30;
+      if (rainy) alerts.push(["", "☔ 預報" + wmo(w.code)[1] + "・降雨機率 " + r0(w.pop) + "%：" +
+        (dayIdx === 1 ? "城牆步道的石階、碎石路濕滑，可縮短步道、以西門與展望台為主。" :
+         dayIdx === 2 ? "下午以大原美術館等室內為主；雨天的石板路與倉敷川倒影也很好拍。" :
+         "帶雨具，相機做好防水；夜拍可改拍雨夜倒影。")]);
+      if (windy) alerts.push(["", "💨 最大風速約 " + r0(w.wind) + " km/h：" +
+        (dayIdx === 1 ? "山上與城牆邊風大，注意保暖、腳架要壓穩。" : "體感偏冷，注意保暖。")]);
+      if (w.tmin <= 2) alerts.push(["", "🥶 最低溫約 " + r0(w.tmin) + "°C：早晚很冷，手套、毛帽、暖暖包備好，相機電池放口袋保溫。"]);
+      if ((w.code >= 71 && w.code <= 77) || w.code === 85 || w.code === 86) alerts.push(["bad", "❄️ 預報可能下雪：留意 JR 與巴士延誤，戶外步道視狀況取消。"]);
+    }
+    $("[data-alerts]", sec).innerHTML = alerts.map(function (a) { return '<div class="alert ' + a[0] + '">' + a[1] + "</div>"; }).join("");
+
+    /* inline sun hints inside events */
+    var t1 = $('[data-sun-text="d1"]', sec);
+    var minsOf = function (ms) { var d = new Date(ms + JST); return d.getUTCHours() * 60 + d.getUTCMinutes(); };
+    if (t1) t1.textContent = "當天日落 " + hm(sunset) + "、藍調時刻約 " + hm(sun.blueEve[0]) + "–" + hm(sun.blueEve[1]) +
+      (minsOf(sun.blueEve[1]) <= 17 * 60 + 45 ? "，17:30 到時藍調已近尾聲，以河道與城市燈光為主；想拍藍調可提早 20 分鐘出門" : "，可拍河道、橋梁與城市燈光");
+    var t2 = $('[data-sun-text="d2"]', sec);
+    if (t2) t2.textContent = "（當天日落 " + hm(sunset) + "，14:00 下山前光線充足；冬天午後山上降溫快。）";
+    var t3 = $('[data-sun-text="d3"]', sec);
+    if (t3) t3.textContent = "黃金時刻約 " + hm(sun.goldenEve[0]) + "–" + hm(sun.goldenEve[1]) + "（日落 " + hm(sunset) + "）正好落在這段；藍調時刻約 " +
+      hm(sun.blueEve[0]) + "–" + hm(sun.blueEve[1]) + "，天黑後街燈亮起也很好拍，可視情況晚一班 JR 回岡山";
+  }
+
+  function renderAll() {
+    var start = startDate();
+    renderHeader(start);
+    $$(".day").forEach(function (sec) { renderDay(sec, start); });
+    markNow(start);
+  }
+
+  /* ---------- checkboxes with persistence + progress ---------- */
+  var CK = "okj-v4-checks";
+  var checks = store.get(CK, {});
+  function boxKey(input, i) { return input.closest("section").id + ":" + i; }
+  function updateProgress() {
+    $$(".day").forEach(function (sec) {
+      var boxes = $$(".event input[type=checkbox]", sec), done = boxes.filter(function (b) { return b.checked; }).length;
+      var pr = $("[data-progress]", sec);
+      pr.querySelector("span").textContent = "完成 " + done + "/" + boxes.length;
+      pr.querySelector("i").style.width = (boxes.length ? done / boxes.length * 100 : 0) + "%";
+    });
+    var pack = $$("#pack input[type=checkbox]"), pd = pack.filter(function (b) { return b.checked; }).length;
+    $("[data-pack-progress]").textContent = pd + "/" + pack.length;
+  }
+  function initChecks() {
+    ["day1", "day2", "day3", "day4", "pack"].forEach(function (id) {
+      $$("#" + id + " input[type=checkbox]").forEach(function (input, i) {
+        var k = boxKey(input, i);
+        input.checked = !!checks[k];
+        input.addEventListener("change", function () {
+          if (input.checked) checks[k] = 1; else delete checks[k];
+          store.set(CK, checks); updateProgress();
+        });
+      });
+    });
+    $("#resetChecks").addEventListener("click", function () {
+      if (!confirm("清除所有行程與攜帶清單的勾選？")) return;
+      checks = {}; store.del(CK);
+      $$("input[type=checkbox]").forEach(function (b) { b.checked = false; });
+      updateProgress();
+    });
+    updateProgress();
+  }
+
+  /* ---------- date controls ---------- */
+  function initDate() {
+    var input = $("#startDate");
+    input.value = startDate();
+    input.addEventListener("change", function () {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(input.value)) return;
+      store.set("okj-v4-start", input.value); renderAll();
+    });
+    $("#resetDate").addEventListener("click", function () {
+      store.del("okj-v4-start"); input.value = DEFAULT_START; renderAll();
+    });
+  }
+
+  /* ---------- "now" highlight during the trip ---------- */
+  function parseRange(txt) {
+    var m = txt.match(/(\d{1,2}):(\d{2})(?:\s*[–-]\s*(\d{1,2}):(\d{2}))?/);
+    if (!m) return null;
+    var a = +m[1] * 60 + +m[2], b = m[3] ? +m[3] * 60 + +m[4] : a + 30;
+    return [a, b];
+  }
+  var jumped = false;
+  function markNow(start) {
+    var today = todayIso(), idx = Math.round((jstMidnight(today) - jstMidnight(start)) / DAY);
+    $$(".event.now").forEach(function (e) { e.classList.remove("now"); });
+    if (idx < 0 || idx > 3) return;
+    var sec = $("#day" + (idx + 1)), d = new Date(Date.now() + JST), mins = d.getUTCHours() * 60 + d.getUTCMinutes();
+    var current = null;
+    $$(".event", sec).forEach(function (ev) {
+      var r = parseRange($(".time", ev).textContent);
+      if (r && mins >= r[0] && mins < r[1]) current = ev;
+    });
+    if (current) current.classList.add("now");
+    if (!jumped && !location.hash) { jumped = true; (current || sec).scrollIntoView({ block: "start" }); }
+  }
+
+  /* ---------- scroll-spy tabs ---------- */
+  function initSpy() {
+    var tabs = $$(".tabs a");
+    if (!("IntersectionObserver" in window)) return;
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting ? e.intersectionRect.height : 0; });
+      var best = null, bestH = 0;
+      Object.keys(visible).forEach(function (id) { if (visible[id] > bestH) { bestH = visible[id]; best = id; } });
+      tabs.forEach(function (t) { t.classList.toggle("active", !!best && t.getAttribute("href") === "#" + best); });
+    }, { rootMargin: "-70px 0px -35% 0px", threshold: [0, .1, .25, .5, .75, 1] });
+    $$(".day").forEach(function (s) { io.observe(s); });
+  }
+
+  initDate();
+  initChecks();
+  initSpy();
+  renderAll();
+  loadWeather();
+  setInterval(function () { markNow(startDate()); }, 60e3);
+})();
+</script>
+</body>
+</html>
